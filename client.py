@@ -1,9 +1,9 @@
 import os
-from supabase import create_client, Client
+from supabase import create_client
 from dotenv import load_dotenv
 from fastapi import FastAPI,Depends
 from fastapi.security import HTTPBearer
-from fastapi import HTTPException, status
+from fastapi import HTTPException
 from pydantic import BaseModel
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 
