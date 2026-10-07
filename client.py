@@ -47,3 +47,19 @@ def profile(user=Depends(cur_user)):
     return {
         "token": user.email
     }
+
+@api.post("/auth/signup",status_code=201)
+def signup(data : details):
+    if not data.email or not data.password:
+        raise HTTPException(status_code=400,detail="Email or password is not given.") 
+    response = supabase.auth.sign_up({
+        'email':data.email,
+        'password':data.password
+    })
+    return response
+
+@api.get("/protected/dashboard")
+def dashboard(user=Depends(cur_user)):
+    return {
+        "message": "the dashboard accessed successfully"
+    }
