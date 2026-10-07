@@ -63,3 +63,16 @@ def dashboard(user=Depends(cur_user)):
     return {
         "message": "the dashboard accessed successfully"
     }
+
+
+@api.get("/auth/logout")
+def logout(user = Depends(cur_user)):
+     try:
+        supabase.auth.sign_out()
+        return {
+          "message":"Successfully Logged out"
+        }
+     except Exception:
+          return {
+               'message':"Invalid or expired token"
+          }
